@@ -14,7 +14,7 @@
 {% seo %}
   </head>
 
-  <body>
+  <body class="no-js">
 
     <header>
       <div class="container header-bar">
@@ -29,7 +29,15 @@
         {% if nav_items or site.github.repository_url %}
         <div class="header-actions fixed-navbar">
           {% if nav_items %}
-          <nav class="site-nav" aria-label="Main navigation">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+            <span class="nav-toggle-box" aria-hidden="true">
+              <span class="nav-toggle-bar"></span>
+              <span class="nav-toggle-bar"></span>
+              <span class="nav-toggle-bar"></span>
+            </span>
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
             <ul>
               {% assign current_url = page.url | default: '/' %}
               {% for item in nav_items %}
@@ -61,5 +69,26 @@
         {{ content }}
       </section>
     </div>
+
+    <script>
+      (function () {
+        var docBody = document.body;
+        if (docBody) {
+          docBody.classList.remove('no-js');
+        }
+        var toggle = document.querySelector('.nav-toggle');
+        var nav = document.getElementById('site-navigation');
+        if (!toggle || !nav) {
+          return;
+        }
+        toggle.addEventListener('click', function () {
+          var expanded = this.getAttribute('aria-expanded') === 'true';
+          var nextState = !expanded;
+          this.setAttribute('aria-expanded', String(nextState));
+          this.classList.toggle('is-active', nextState);
+          nav.classList.toggle('is-open', nextState);
+        });
+      })();
+    </script>
   </body>
 </html>
