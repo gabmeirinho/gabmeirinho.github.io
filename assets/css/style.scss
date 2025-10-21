@@ -2,38 +2,97 @@
 ---
 @import "{{ site.theme }}";
 
-.site-nav {
-  margin: 1.5rem 0 0;
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  a {
-    color: #f8f8f2;
-    text-decoration: none;
-    padding: 0.25rem 0.75rem;
-    border: 1px solid #2aa198;
-    border-radius: 4px;
-    transition: background-color 0.15s ease, color 0.15s ease;
-  }
-  a:hover,
-  a:focus {
-    background-color: #2aa198;
-    color: #151515;
-  }
-  a.active {
-    background-color: #2aa198;
-    color: #151515;
-  }
+header {
+  background: #151515;
 }
 
-@media (max-width: 600px) {
-  .site-nav ul {
-    flex-direction: column;
+.header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.header-brand #a-title {
+  text-decoration: none;
+}
+
+.header-brand h1 {
+  margin: 0;
+}
+
+.site-tagline {
+  margin: 0;
+  color: #93a1a1;
+  font-size: 0.95rem;
+}
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.site-nav a {
+  color: #f8f8f2;
+  text-decoration: none;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid #2aa198;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus,
+.site-nav a.active {
+  background-color: #2aa198;
+  color: #151515;
+}
+
+.btn {
+  padding: 0.4rem 1rem;
+}
+
+.btn:after {
+  content: none !important;
+}
+
+.header-github {
+  border-color: #268bd2;
+}
+
+.header-github:hover,
+.header-github:focus {
+  background-color: #268bd2;
+  color: #151515;
+}
+
+@media (max-width: 700px) {
+  .header-actions {
+    justify-content: flex-start;
+  }
+
+  .header-bar {
     align-items: flex-start;
   }
 }

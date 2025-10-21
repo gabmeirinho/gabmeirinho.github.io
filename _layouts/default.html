@@ -17,47 +17,42 @@
   <body>
 
     <header>
-      <div class="container">
-        <a id="a-title" href="{{ '/' | relative_url }}">
-          <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        </a>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+      <div class="container header-bar">
+        <div class="header-brand">
+          <a id="a-title" href="{{ '/' | relative_url }}">
+            <h1>{{ site.title | default: site.github.repository_name }}</h1>
+          </a>
+          <p class="site-tagline">{{ site.description | default: site.github.project_tagline }}</p>
+        </div>
 
         {% assign nav_items = site.data.navigation %}
-        {% if nav_items %}
-        <nav class="site-nav" aria-label="Main navigation">
-          <ul>
-            {% assign current_url = page.url | default: '/' %}
-            {% for item in nav_items %}
-            {% assign item_url = item.url | default: '/' %}
-            {% assign item_relative = item.url | relative_url %}
-            {% assign item_url_slash = item_url | append: '/' %}
-            {% assign item_relative_slash = item_relative | append: '/' %}
-            {% assign is_current = false %}
-            {% if current_url == item_url %}
-              {% assign is_current = true %}
-            {% elsif current_url == item_relative %}
-              {% assign is_current = true %}
-            {% elsif current_url == item_url_slash %}
-              {% assign is_current = true %}
-            {% elsif current_url == item_relative_slash %}
-              {% assign is_current = true %}
-            {% endif %}
-            <li>
-              <a href="{{ item_relative }}"{% if is_current %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </nav>
-        {% endif %}
-
-        <section id="downloads">
-          {% if site.show_downloads %}
-            <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
-            <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
+        {% if nav_items or site.github.repository_url %}
+        <div class="header-actions">
+          {% if nav_items %}
+          <nav class="site-nav" aria-label="Main navigation">
+            <ul>
+              {% assign current_url = page.url | default: '/' %}
+              {% for item in nav_items %}
+              {% assign item_url = item.url | default: '/' %}
+              {% assign item_relative = item.url | relative_url %}
+              {% assign item_url_slash = item_url | append: '/' %}
+              {% assign item_relative_slash = item_relative | append: '/' %}
+              {% assign is_current = false %}
+              {% if current_url == item_url or current_url == item_relative or current_url == item_url_slash or current_url == item_relative_slash %}
+                {% assign is_current = true %}
+              {% endif %}
+              <li>
+                <a href="{{ item_relative }}"{% if is_current %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </nav>
           {% endif %}
-          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
+          {% if site.github.repository_url %}
+          <a href="{{ site.github.repository_url }}" class="btn btn-github header-github">View on GitHub</a>
+          {% endif %}
+        </div>
+        {% endif %}
       </div>
     </header>
 
