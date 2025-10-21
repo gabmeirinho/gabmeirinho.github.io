@@ -105,7 +105,12 @@ header {
   }
 }
 
+.fixed-navbar .site-nav li::marker {
+  content: none;
+}
+
 .site-nav a::before,
 .site-nav a::after {
   content: none !important;
 }
+
