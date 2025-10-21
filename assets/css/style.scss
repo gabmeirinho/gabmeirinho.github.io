@@ -104,3 +104,8 @@ header {
     align-items: flex-start;
   }
 }
+
+.site-nav a::before,
+.site-nav a::after {
+  content: none !important;
+}
