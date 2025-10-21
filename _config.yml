@@ -3,8 +3,7 @@ lang: en
 locale: en_US
 
 # Theme
-# Use the So Simple theme via remote_theme so GitHub Pages can build it.
-remote_theme: mmistakes/so-simple-theme
+remote_theme: pages-themes/hacker@v0.2.0
 
 # Site metadata
 title: "PL @ LX"
@@ -12,7 +11,7 @@ description: "Informal programming language design and implementation community 
 url: "https://gabmeirinho.github.io"
 baseurl: ""
 
-# Owner information displayed in theme footer
+# Owner information
 author:
   name: "PL @ LX"
   location: "Lisbon, Portugal"
@@ -31,7 +30,6 @@ plugins:
   - jekyll-feed
   - jekyll-remote-theme
 
-# Collections (none for now)
 collections:
   posts:
     output: true
